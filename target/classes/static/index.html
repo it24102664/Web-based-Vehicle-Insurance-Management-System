@@ -1,0 +1,2425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotorCare LK - Your Right Way to Buy Right Insurance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a69bd;
+        }
+
+        .logo::before {
+            content: "🛡️";
+            margin-right: 0.5rem;
+            color: #ff6b35;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #4a69bd;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: #4a69bd;
+            border: 2px solid #4a69bd;
+        }
+
+        .btn-login:hover {
+            background: #4a69bd;
+            color: white;
+        }
+
+        .btn-register {
+            background: #4a69bd;
+            color: white;
+        }
+
+        .btn-register:hover {
+            background: #3c5aa6;
+        }
+
+        .btn-admin {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .btn-admin:hover {
+            background: #e55a2b;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4a69bd 0%, #1e3799 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-quote {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .btn-quote:hover {
+            background: #e55a2b;
+        }
+
+        .btn-retrieve {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-retrieve:hover {
+            background: white;
+            color: #4a69bd;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4a69bd;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4a69bd, #1e3799);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            color: #4a69bd;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .about-feature {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .about-feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4a69bd, #1e3799);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .about-feature h3 {
+            color: #4a69bd;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .about-feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4a69bd, #1e3799);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            color: #4a69bd;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .contact-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4a69bd;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 4rem;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #4a69bd, #1e3799);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            background: #ff6b35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-item-content h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item-content p {
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4a69bd;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .checkbox-group label {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .send-btn {
+            background: #4a69bd;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .send-btn:hover {
+            background: #3c5aa6;
+        }
+
+        /* Simple Avatar Styles */
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a69bd, #1e3799);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto 2rem;
+            border: 4px solid #4a69bd;
+            box-shadow: 0 4px 15px rgba(74, 105, 189, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-header h2 {
+            color: #4a69bd;
+            margin: 0;
+        }
+
+        .close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        /* Alert Styles */
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            padding: 100px 0 50px;
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #4a69bd, #1e3799);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* USER Dashboard Layout */
+        .user-layout {
+            display: flex;
+            min-height: calc(100vh - 80px);
+            margin-top: 80px;
+        }
+
+        /* User Sidebar */
+        .user-sidebar {
+            width: 280px;
+            background: linear-gradient(135deg, #4a69bd, #1e3799);
+            color: white;
+            position: fixed;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .user-sidebar-header {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .user-sidebar-header h3 {
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+
+        .user-sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .user-sidebar-item {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .user-sidebar-item:hover,
+        .user-sidebar-item.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-left: 4px solid #ff6b35;
+        }
+
+        /* User Content Area */
+        .user-content {
+            margin-left: 280px;
+            padding: 2rem;
+            flex: 1;
+            background: #f8f9fa;
+        }
+
+        /* Admin Dashboard Layout */
+        .admin-layout {
+            display: flex;
+            min-height: calc(100vh - 80px);
+            margin-top: 80px;
+        }
+
+        /* Admin Sidebar */
+        .admin-sidebar {
+            width: 280px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            position: fixed;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-header h3 {
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .sidebar-item {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-left: 4px solid #ff6b35;
+        }
+
+        /* Admin Content Area */
+        .admin-content {
+            margin-left: 280px;
+            padding: 2rem;
+            flex: 1;
+            background: #f8f9fa;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #4a69bd;
+        }
+
+        .table-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #4a69bd;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Page Styles */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Section Styles */
+        .admin-section,
+        .user-section {
+            display: none;
+        }
+
+        .admin-section.active,
+        .user-section.active {
+            display: block;
+        }
+
+        /* Form Helper Text */
+        .form-helper {
+            font-size: 0.875rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #4a69bd, #1e3799);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4a69bd;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .auth-buttons {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .modal-content {
+                margin: 1rem;
+                width: calc(100% - 2rem);
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .features-grid,
+            .services-grid,
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .user-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+
+            .admin-sidebar,
+            .user-sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .admin-content,
+            .user-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .admin-layout,
+            .user-layout {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="nav-container">
+        <div class="logo">MOTORCARE LK</div>
+
+        <nav class="nav-menu">
+            <a href="#" onclick="showPage('home')" class="nav-link active">HOME</a>
+            <a href="#" onclick="showPage('about')" class="nav-link">ABOUT</a>
+            <a href="#" onclick="showPage('services')" class="nav-link">SERVICES</a>
+            <a href="#" onclick="showPage('contact')" class="nav-link">CONTACT</a>
+        </nav>
+
+        <div class="auth-buttons" id="authButtons">
+            <button class="btn btn-login" onclick="showLoginModal()">👤 Login</button>
+            <button class="btn btn-register" onclick="showRegisterModal()">📝 Register</button>
+            <button class="btn btn-admin" onclick="showAdminLoginModal()">🛡️ Admin</button>
+        </div>
+
+        <div class="auth-buttons" id="userButtons" style="display: none;">
+            <button class="btn btn-login" onclick="showUserDashboard()">📊 Dashboard</button>
+            <button class="btn btn-admin" onclick="logout()">🚪 Logout</button>
+        </div>
+
+        <div class="auth-buttons" id="adminButtons" style="display: none;">
+            <button class="btn btn-login" onclick="showAdminDashboard()">📊 Dashboard</button>
+            <button class="btn btn-admin" onclick="logout()">🚪 Logout</button>
+        </div>
+    </div>
+</header>
+
+<!-- Home Page -->
+<div id="home" class="page active">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Your Right Way to Buy Right Insurance</h1>
+            <p>Upgrade your Lifestyle and Bring Home Happiness with MOTORCARE LK</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-hero btn-quote">📋 Get a Quote</a>
+                <a href="#" class="btn-hero btn-retrieve">🔍 Retrieve a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Personalize Your Cover with Our Policy Upgrades</h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Breakdown Cover</h3>
+                    <p>24/7 roadside assistance and emergency breakdown service across Sri Lanka</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>Personal Injury Cover</h3>
+                    <p>Comprehensive medical coverage for you and your passengers</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Modifications Cover</h3>
+                    <p>Protection for vehicle modifications and upgrades</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- About Page -->
+<div id="about" class="page">
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">About MotorCare LK</h2>
+            <div class="about-content">
+                <p>MotorCare LK is Sri Lanka's leading motor insurance provider, committed to protecting you and your vehicle with comprehensive, affordable coverage.</p>
+            </div>
+
+            <div class="about-features">
+                <div class="about-feature">
+                    <div class="about-feature-icon">🏆</div>
+                    <h3>Award Winning</h3>
+                    <p>Recognized for excellence in customer service and claim processing</p>
+                </div>
+
+                <div class="about-feature">
+                    <div class="about-feature-icon">👥</div>
+                    <h3>Trusted by Many</h3>
+                    <p>Over 500,000 satisfied customers across Sri Lanka</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Services Page -->
+<div id="services" class="page">
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Comprehensive Coverage</h3>
+                    <p>Full protection against accidents, theft, fire, and natural disasters</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⏰</div>
+                    <h3>Quick Claims</h3>
+                    <p>Fast and hassle-free claim processing with 24/7 support</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Digital Services</h3>
+                    <p>Manage your policy online with our user-friendly platform</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Contact Page -->
+<div id="contact" class="page">
+    <section class="contact">
+        <div class="contact-container">
+            <h2 class="contact-title">Contact Us</h2>
+            <p class="contact-subtitle">Have questions or need assistance? Contact us today.</p>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-content">
+                            <h4>Address</h4>
+                            <p>MOTORCARE LK, Colombo 11 A</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-content">
+                            <h4>Phone</h4>
+                            <p>+94-119 678 990</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📧</div>
+                        <div class="contact-item-content">
+                            <h4>Email</h4>
+                            <p>info@motorcare.lk</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕒</div>
+                        <div class="contact-item-content">
+                            <h4>Working Hours</h4>
+                            <p>7 days a week from 9 AM to 7 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Name</label>
+                            <input type="text" id="contactName" required placeholder="Enter your name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPhone">Phone Number</label>
+                            <input type="tel" id="contactPhone" required placeholder="Enter your phone number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" required placeholder="Enter your message here"></textarea>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <label for="agreeTerms">You agree to the Term of Service and consent to the processing of your personal data as outlined in our Privacy Policy</label>
+                        </div>
+
+                        <button type="submit" class="send-btn">📧 Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- USER DASHBOARD WITH SIDEBAR -->
+<div id="user-dashboard" class="page">
+    <div class="user-layout">
+        <!-- User Sidebar -->
+        <div class="user-sidebar">
+            <div class="user-sidebar-header">
+                <!-- User Avatar -->
+                <div class="user-avatar" id="sidebarUserAvatar" style="width: 80px; height: 80px; font-size: 2rem; margin: 0 auto 1rem;">
+                    ?
+                </div>
+                <h3 id="sidebarUserName">User Panel</h3>
+                <p>Personal Dashboard</p>
+            </div>
+
+            <nav class="user-sidebar-nav">
+                <button class="user-sidebar-item active" onclick="showUserSection('user-home')">
+                    🏠 Home
+                </button>
+                <button class="user-sidebar-item" onclick="showUserSection('user-profile')">
+                    👤 Profile
+                </button>
+                <button class="user-sidebar-item" onclick="navigateToPage('userpolicy.html')">
+                    📄 My Policies
+                </button>
+                <button class="user-sidebar-item" onclick="navigateToPage('userclaims.html')">
+                    🔍 My Claims
+                </button>
+                <button class="user-sidebar-item" onclick="navigateToPage('userpayment.html')">
+                    💳 Payments
+                </button>
+                <button class="user-sidebar-item" onclick="navigateToPage('notificationuser.html')">
+                    🔔 Notifications
+                </button>
+                <button class="user-sidebar-item" onclick="navigateToPage('userreport.html')">
+                    📈 Reports
+                </button>
+            </nav>
+        </div>
+
+        <!-- User Content Area -->
+        <div class="user-content">
+            <div id="userDashboardAlert" class="alert"></div>
+
+            <!-- User Home Section -->
+            <div id="user-home" class="user-section active">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">🏠 Dashboard Overview</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📄</div>
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Active Policies</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔍</div>
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Pending Claims</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💳</div>
+                        <div class="stat-number">₨70,000</div>
+                        <div class="stat-label">Total Paid</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-number">Oct 1</div>
+                        <div class="stat-label">Next Due</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h3 style="color: #4a69bd; margin-bottom: 1rem;">📅 Recent Activities</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Policy Premium Payment</td>
+                            <td>Payment</td>
+                            <td>2025-09-20</td>
+                            <td><span style="color: green;">✅ Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Claim Submission</td>
+                            <td>Claim</td>
+                            <td>2025-09-18</td>
+                            <td><span style="color: orange;">⏳ Processing</span></td>
+                        </tr>
+                        <tr>
+                            <td>Profile Updated</td>
+                            <td>Profile</td>
+                            <td>2025-09-15</td>
+                            <td><span style="color: green;">✅ Success</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- User Profile Section -->
+            <div id="user-profile" class="user-section">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">👤 My Profile</h2>
+
+                <div class="table-container">
+                    <div style="display: flex; align-items: center; margin-bottom: 2rem;">
+                        <div class="user-avatar" id="profileUserAvatar">
+                            ?
+                        </div>
+                        <div style="margin-left: 2rem;">
+                            <h3 id="profileUserName">Loading...</h3>
+                            <p style="color: #666;">Member since 2025</p>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <strong>👤 Name:</strong> <span id="profileDisplayName">-</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>📧 Email:</strong> <span id="profileEmail">-</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>🆔 NIC:</strong> <span id="profileNic">-</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>📞 Phone:</strong> <span id="profilePhone">-</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>🎂 Age:</strong> <span id="profileAge">-</span>
+                        </div>
+                        <div class="info-card" style="grid-column: 1/-1;">
+                            <strong>🏠 Address:</strong> <span id="profileAddress">-</span>
+                        </div>
+                    </div>
+
+                    <div class="actions-grid">
+                        <button class="btn btn-register" onclick="showEditProfileModal()">✏️ Edit Profile</button>
+                        <button class="btn btn-login" onclick="showChangePasswordModal()">🔐 Change Password</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Payments Section -->
+            <div id="user-payments" class="user-section">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">💳 My Payments</h2>
+
+                <div class="stats-grid" style="margin-bottom: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-number">₨70,000</div>
+                        <div class="stat-label">Total Paid</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-number">₨25,000</div>
+                        <div class="stat-label">Next Payment</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h3 style="color: #4a69bd; margin-bottom: 1rem;">Payment History</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Payment ID</th>
+                            <th>Policy</th>
+                            <th>Amount</th>
+                            <th>Method</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>PAY001</td>
+                            <td>POL001</td>
+                            <td>₨45,000</td>
+                            <td>Credit Card</td>
+                            <td>2025-09-01</td>
+                            <td><span style="color: green;">✅ Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td>PAY002</td>
+                            <td>POL002</td>
+                            <td>₨25,000</td>
+                            <td>Bank Transfer</td>
+                            <td>2025-08-15</td>
+                            <td><span style="color: green;">✅ Paid</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- User Notifications Section -->
+            <div id="user-notifications" class="user-section">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">🔔 My Notifications</h2>
+
+                <div class="table-container">
+                    <h3 style="color: #4a69bd; margin-bottom: 1rem;">Recent Notifications</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; border-left: 4px solid #ffc107;">
+                            <h4 style="color: #856404;">⚠️ Payment Reminder</h4>
+                            <p>Your policy POL001 premium payment is due on October 1, 2025</p>
+                            <small style="color: #666;">2 days ago</small>
+                        </div>
+                        <div style="background: #d1ecf1; padding: 1rem; border-radius: 8px; border-left: 4px solid #17a2b8;">
+                            <h4 style="color: #0c5460;">ℹ️ Claim Update</h4>
+                            <p>Your claim CL001 is now under review by our assessment team</p>
+                            <small style="color: #666;">5 days ago</small>
+                        </div>
+                        <div style="background: #d4edda; padding: 1rem; border-radius: 8px; border-left: 4px solid #28a745;">
+                            <h4 style="color: #155724;">✅ Profile Updated</h4>
+                            <p>Your profile information has been successfully updated</p>
+                            <small style="color: #666;">1 week ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Reports Section -->
+            <div id="user-reports" class="user-section">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">📈 My Reports</h2>
+
+                <div class="table-container">
+                    <h3 style="color: #4a69bd; margin-bottom: 1rem;">Available Reports</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                            <h4 style="color: #4a69bd; margin-bottom: 1rem;">Annual Policy Report</h4>
+                            <p style="color: #666; margin-bottom: 1.5rem;">Comprehensive overview of your policy activities for 2025</p>
+                            <button class="btn btn-register">Download PDF</button>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                            <h4 style="color: #4a69bd; margin-bottom: 1rem;">Claims History</h4>
+                            <p style="color: #666; margin-bottom: 1.5rem;">Detailed history of all your submitted claims</p>
+                            <button class="btn btn-register">Download PDF</button>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">💳</div>
+                            <h4 style="color: #4a69bd; margin-bottom: 1rem;">Payment Summary</h4>
+                            <p style="color: #666; margin-bottom: 1.5rem;">Complete payment history and receipts</p>
+                            <button class="btn btn-register">Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ADMIN DASHBOARD WITH SIDEBAR -->
+<div id="admin-dashboard" class="page">
+    <div class="admin-layout">
+        <!-- Admin Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <h3>🛡️ Admin Panel</h3>
+                <p>Management System</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="sidebar-item active" onclick="showAdminSection('overview')">
+                    📊 Dashboard Overview
+                </button>
+                <button class="sidebar-item" onclick="showAdminSection('users')">
+                    👥 User Management
+                </button>
+                <button class="sidebar-item" onclick="navigateToPage('adminpolicy.html')">
+                    📄 Policy Management
+                </button>
+                <button class="sidebar-item" onclick="navigateToPage('adminclaims.html')">
+                    🔍 Claims Management
+                </button>
+                <button class="sidebar-item" onclick="navigateToPage('adminpayment.html')">
+                    💳 Payment Management
+                </button>
+                <button class="sidebar-item" onclick="navigateToPage('notificationadmin.html')">
+                    🔔 Notifications
+                </button>
+                <button class="sidebar-item" onclick="navigateToPage('adminreport.html')">
+                    📈 Reports & Analytics
+                </button>
+            </nav>
+        </div>
+
+        <!-- Admin Content Area -->
+        <div class="admin-content">
+            <div id="adminDashboardAlert" class="alert"></div>
+
+            <!-- Dashboard Overview Section -->
+            <div id="overview" class="admin-section active">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">📊 Dashboard Overview</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number" id="totalUsersCount">0</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📄</div>
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Active Policies</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔍</div>
+                        <div class="stat-number">23</div>
+                        <div class="stat-label">Pending Claims</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-number">₨2.5M</div>
+                        <div class="stat-label">Monthly Revenue</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h3 style="color: #4a69bd; margin-bottom: 1rem;">📈 Recent Activities</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>New Policy Created</td>
+                            <td>John Doe</td>
+                            <td>2025-09-23</td>
+                            <td><span style="color: green;">✅ Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>Claim Submitted</td>
+                            <td>Jane Smith</td>
+                            <td>2025-09-22</td>
+                            <td><span style="color: orange;">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Payment Processed</td>
+                            <td>Mike Johnson</td>
+                            <td>2025-09-21</td>
+                            <td><span style="color: green;">✅ Completed</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- User Management Section -->
+            <div id="users" class="admin-section">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">👥 User Management</h2>
+
+                <div class="table-container">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="color: #4a69bd; margin: 0;">Registered Users</h3>
+                        <button class="btn btn-register" onclick="refreshUsers()">🔄 Refresh Data</button>
+                    </div>
+                    <div id="usersTable">
+                        <!-- Users table will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payments Section -->
+            <div id="payments" class="admin-section">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">💳 Payment Management</h2>
+
+                <div class="stats-grid" style="margin-bottom: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-number">₨2.5M</div>
+                        <div class="stat-label">Monthly Revenue</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-number">₨28.5M</div>
+                        <div class="stat-label">Yearly Revenue</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Pending Payments</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Failed Payments</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h3 style="color: #4a69bd; margin-bottom: 1rem;">Recent Payments</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Payment ID</th>
+                            <th>User</th>
+                            <th>Policy ID</th>
+                            <th>Amount</th>
+                            <th>Method</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>PAY001</td>
+                            <td>John Doe</td>
+                            <td>POL001</td>
+                            <td>₨45,000</td>
+                            <td>Credit Card</td>
+                            <td>2025-09-23</td>
+                            <td><span style="color: green;">✅ Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>PAY002</td>
+                            <td>Jane Smith</td>
+                            <td>POL002</td>
+                            <td>₨25,000</td>
+                            <td>Bank Transfer</td>
+                            <td>2025-09-22</td>
+                            <td><span style="color: orange;">⏳ Pending</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Notifications Section -->
+            <div id="notifications" class="admin-section">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">🔔 Notifications</h2>
+
+                <div class="table-container">
+                    <h3 style="color: #4a69bd; margin-bottom: 1rem;">System Notifications</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; border-left: 4px solid #ffc107;">
+                            <h4 style="color: #856404;">⚠️ Policy Renewal Reminder</h4>
+                            <p>15 policies are expiring within the next 30 days</p>
+                            <small style="color: #666;">2 hours ago</small>
+                        </div>
+                        <div style="background: #d1ecf1; padding: 1rem; border-radius: 8px; border-left: 4px solid #17a2b8;">
+                            <h4 style="color: #0c5460;">ℹ️ New Claim Submitted</h4>
+                            <p>John Doe submitted a new claim for policy POL001</p>
+                            <small style="color: #666;">5 hours ago</small>
+                        </div>
+                        <div style="background: #d4edda; padding: 1rem; border-radius: 8px; border-left: 4px solid #28a745;">
+                            <h4 style="color: #155724;">✅ Monthly Report Generated</h4>
+                            <p>September 2025 financial report is ready for review</p>
+                            <small style="color: #666;">1 day ago</small>
+                        </div>
+                        <div style="background: #f8d7da; padding: 1rem; border-radius: 8px; border-left: 4px solid #dc3545;">
+                            <h4 style="color: #721c24;">🚨 Failed Payment Alert</h4>
+                            <p>Payment PAY003 failed - Customer needs to update payment method</p>
+                            <small style="color: #666;">2 days ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Section -->
+            <div id="reports" class="admin-section">
+                <h2 style="color: #4a69bd; margin-bottom: 2rem;">📈 Reports & Analytics</h2>
+
+                <div class="table-container">
+                    <h3 style="color: #4a69bd; margin-bottom: 1rem;">📊 Key Metrics</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                            <h4 style="color: #4a69bd;">Revenue Growth</h4>
+                            <p style="font-size: 1.5rem; font-weight: bold; color: green;">+15.3%</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                            <h4 style="color: #4a69bd;">Customer Satisfaction</h4>
+                            <p style="font-size: 1.5rem; font-weight: bold; color: green;">94.2%</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                            <h4 style="color: #4a69bd;">Claim Processing Time</h4>
+                            <p style="font-size: 1.5rem; font-weight: bold; color: orange;">3.2 days</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #4a69bd; margin-bottom: 1rem;">📋 Generate Reports</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                            <h4 style="color: #4a69bd; margin-bottom: 1rem;">Financial Report</h4>
+                            <p style="color: #666; margin-bottom: 1.5rem;">Monthly and yearly financial overview</p>
+                            <button class="btn btn-register">Generate Report</button>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">👥</div>
+                            <h4 style="color: #4a69bd; margin-bottom: 1rem;">User Analytics</h4>
+                            <p style="color: #666; margin-bottom: 1.5rem;">User registration and activity trends</p>
+                            <button class="btn btn-register">Generate Report</button>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                            <h4 style="color: #4a69bd; margin-bottom: 1rem;">Claims Analysis</h4>
+                            <p style="color: #666; margin-bottom: 1.5rem;">Claims processing and approval statistics</p>
+                            <button class="btn btn-register">Generate Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- User Login Modal -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>👤 Member Login</h2>
+            <button class="close" onclick="closeModal('loginModal')">&times;</button>
+        </div>
+
+        <div id="loginAlert" class="alert"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">📧 Email Address</label>
+                <input type="email" id="loginEmail" required placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">🔒 Password</label>
+                <input type="password" id="loginPassword" required placeholder="Enter your password">
+            </div>
+
+            <button type="submit" class="btn btn-register" style="width: 100%;">Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- User Register Modal -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>📝 Create Account</h2>
+            <button class="close" onclick="closeModal('registerModal')">&times;</button>
+        </div>
+
+        <div id="registerAlert" class="alert"></div>
+
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="registerName">👤 Full Name</label>
+                <input type="text" id="registerName" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="registerAge">🎂 Age</label>
+                <input type="number" id="registerAge" min="16" max="100" required placeholder="Your age">
+            </div>
+
+            <div class="form-group">
+                <label for="registerNic">🆔 NIC Number</label>
+                <input type="text" id="registerNic" required placeholder="123456789V or 200012345678">
+                <small class="form-helper">Enter your National Identity Card number</small>
+            </div>
+
+            <div class="form-group">
+                <label for="registerAddress">🏠 Address</label>
+                <textarea id="registerAddress" required placeholder="Enter your complete address"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPhone">📞 Phone Number</label>
+                <input type="tel" id="registerPhone" required placeholder="+94 77 123 4567">
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmail">📧 Email Address</label>
+                <input type="email" id="registerEmail" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">🔒 Password</label>
+                <input type="password" id="registerPassword" required minlength="6" placeholder="Minimum 6 characters">
+            </div>
+
+            <button type="submit" class="btn btn-register" style="width: 100%;">Register</button>
+        </form>
+    </div>
+</div>
+
+<!-- Admin Login Modal -->
+<div id="adminLoginModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🛡️ Admin Login</h2>
+            <button class="close" onclick="closeModal('adminLoginModal')">&times;</button>
+        </div>
+
+        <div id="adminLoginAlert" class="alert"></div>
+
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label for="adminEmail">📧 Admin Email</label>
+                <input type="email" id="adminEmail" required placeholder="Enter admin email">
+            </div>
+
+            <div class="form-group">
+                <label for="adminPassword">🔒 Admin Password</label>
+                <input type="password" id="adminPassword" required placeholder="Enter admin password">
+            </div>
+
+            <button type="submit" class="btn btn-admin" style="width: 100%;">Admin Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div id="editProfileModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>✏️ Edit Profile</h2>
+            <button class="close" onclick="closeModal('editProfileModal')">&times;</button>
+        </div>
+
+        <div id="editProfileAlert" class="alert"></div>
+
+        <form id="editProfileForm">
+            <div class="form-group">
+                <label for="editName">👤 Full Name</label>
+                <input type="text" id="editName" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="editAge">🎂 Age</label>
+                <input type="number" id="editAge" min="16" max="100" required placeholder="Your age">
+                <small class="form-helper">Enter your current age (16-100 years)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="editNic">🆔 NIC Number</label>
+                <input type="text" id="editNic" required placeholder="123456789V or 200012345678">
+                <small class="form-helper">National Identity Card number</small>
+            </div>
+
+            <div class="form-group">
+                <label for="editAddress">🏠 Address</label>
+                <textarea id="editAddress" required placeholder="Enter your complete address"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="editPhone">📞 Phone Number</label>
+                <input type="tel" id="editPhone" required placeholder="+94 77 123 4567">
+            </div>
+
+            <div class="form-group">
+                <label for="editEmail">📧 Email Address</label>
+                <input type="email" id="editEmail" required placeholder="your.email@example.com">
+            </div>
+
+            <button type="submit" class="btn btn-register" style="width: 100%;">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<!-- Change Password Modal -->
+<div id="changePasswordModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🔐 Change Password</h2>
+            <button class="close" onclick="closeModal('changePasswordModal')">&times;</button>
+        </div>
+
+        <div id="changePasswordAlert" class="alert"></div>
+
+        <form id="changePasswordForm">
+            <div class="form-group">
+                <label for="currentPassword">🔒 Current Password</label>
+                <input type="password" id="currentPassword" required placeholder="Enter current password">
+            </div>
+
+            <div class="form-group">
+                <label for="newPassword">🔑 New Password</label>
+                <input type="password" id="newPassword" required minlength="6" placeholder="Enter new password">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">✅ Confirm New Password</label>
+                <input type="password" id="confirmPassword" required minlength="6" placeholder="Confirm new password">
+            </div>
+
+            <button type="submit" class="btn btn-register" style="width: 100%;">Update Password</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Global variables
+    let currentUser = null;
+    let currentAdmin = null;
+    let isLoggedIn = false;
+    let userRole = null;
+
+    // API Base URL
+    const API_BASE_URL = 'http://localhost:8080/api';
+
+    // Navigation function for external pages
+    function navigateToPage(page) {
+        window.location.href = page;
+    }
+
+    // Utility functions
+    function showAlert(elementId, message, type) {
+        const alert = document.getElementById(elementId);
+        alert.textContent = message;
+        alert.className = `alert alert-${type} show`;
+        setTimeout(() => {
+            alert.classList.remove('show');
+        }, 5000);
+    }
+
+    function clearAlerts() {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => alert.classList.remove('show'));
+    }
+
+    function showModal(modalId) {
+        clearAlerts();
+        document.getElementById(modalId).classList.add('show');
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('show');
+    }
+
+    function showPage(pageId) {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => page.classList.remove('active'));
+
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+            targetPage.classList.add('active');
+        }
+
+        // Update nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => link.classList.remove('active'));
+
+        const activeLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+        if (activeLink && activeLink.classList.contains('nav-link')) {
+            activeLink.classList.add('active');
+        }
+    }
+
+    // User Section Navigation
+    function showUserSection(sectionId) {
+        // Hide all user sections
+        const sections = document.querySelectorAll('.user-section');
+        sections.forEach(section => section.classList.remove('active'));
+
+        // Show selected section
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+
+        // Update sidebar navigation
+        const sidebarItems = document.querySelectorAll('.user-sidebar-item');
+        sidebarItems.forEach(item => item.classList.remove('active'));
+
+        if (event && event.target) {
+            event.target.classList.add('active');
+        }
+
+        // Load section-specific data
+        if (sectionId === 'user-profile') {
+            loadUserProfile();
+        }
+    }
+
+    // Admin Section Navigation
+    function showAdminSection(sectionId) {
+        // Hide all admin sections
+        const sections = document.querySelectorAll('.admin-section');
+        sections.forEach(section => section.classList.remove('active'));
+
+        // Show selected section
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+
+        // Update sidebar navigation
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        sidebarItems.forEach(item => item.classList.remove('active'));
+
+        if (event && event.target) {
+            event.target.classList.add('active');
+        }
+
+        // Load section-specific data
+        if (sectionId === 'users') {
+            loadAdminDashboard();
+        } else if (sectionId === 'overview') {
+            updateOverviewStats();
+        }
+    }
+
+    function updateAuthButtons() {
+        const authButtons = document.getElementById('authButtons');
+        const userButtons = document.getElementById('userButtons');
+        const adminButtons = document.getElementById('adminButtons');
+
+        // Hide all button groups first
+        authButtons.style.display = 'none';
+        userButtons.style.display = 'none';
+        adminButtons.style.display = 'none';
+
+        if (isLoggedIn) {
+            if (userRole === 'ADMIN') {
+                adminButtons.style.display = 'flex';
+            } else if (userRole === 'USER') {
+                userButtons.style.display = 'flex';
+            }
+        } else {
+            authButtons.style.display = 'flex';
+        }
+    }
+
+    // Avatar functions
+    function getUserInitials(name) {
+        if (!name) return '?';
+        const parts = name.trim().split(' ');
+        if (parts.length >= 2) {
+            return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+        }
+        return parts[0].charAt(0).toUpperCase();
+    }
+
+    function updateUserAvatar() {
+        if (currentUser && currentUser.name) {
+            const initials = getUserInitials(currentUser.name);
+
+            // Update all user avatars
+            document.getElementById('sidebarUserAvatar').textContent = initials;
+            document.getElementById('profileUserAvatar').textContent = initials;
+        } else {
+            document.getElementById('sidebarUserAvatar').textContent = '?';
+            document.getElementById('profileUserAvatar').textContent = '?';
+        }
+    }
+
+    // Modal functions
+    function showLoginModal() { showModal('loginModal'); }
+    function showRegisterModal() { showModal('registerModal'); }
+    function showAdminLoginModal() { showModal('adminLoginModal'); }
+    function showEditProfileModal() {
+        loadProfileDataForEdit();
+        showModal('editProfileModal');
+    }
+    function showChangePasswordModal() { showModal('changePasswordModal'); }
+
+    function showUserDashboard() {
+        showPage('user-dashboard');
+        showUserSection('user-home');
+        loadUserDashboard();
+    }
+
+    function showAdminDashboard() {
+        showPage('admin-dashboard');
+        showAdminSection('overview');
+        updateOverviewStats();
+    }
+
+    // API Helper function
+    async function apiCall(endpoint, method = 'GET', data = null) {
+        const url = `${API_BASE_URL}${endpoint}`;
+        const options = {
+            method,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+
+        if (data) {
+            options.body = JSON.stringify(data);
+        }
+
+        try {
+            console.log(`Making ${method} request to: ${url}`);
+            const response = await fetch(url, options);
+            const result = await response.json();
+            console.log('API Response:', result);
+            return result;
+        } catch (error) {
+            console.error('API call failed:', error);
+            throw error;
+        }
+    }
+
+    // User Registration
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const userData = {
+            name: document.getElementById('registerName').value.trim(),
+            age: parseInt(document.getElementById('registerAge').value),
+            nic: document.getElementById('registerNic').value.trim(),
+            address: document.getElementById('registerAddress').value.trim(),
+            telephone: document.getElementById('registerPhone').value.trim(),
+            email: document.getElementById('registerEmail').value.trim(),
+            password: document.getElementById('registerPassword').value
+        };
+
+        try {
+            const result = await apiCall('/user/register', 'POST', userData);
+
+            if (result.success) {
+                showAlert('registerAlert', result.message, 'success');
+                this.reset();
+                setTimeout(() => {
+                    closeModal('registerModal');
+                    showLoginModal();
+                }, 2000);
+            } else {
+                showAlert('registerAlert', result.message || 'Registration failed', 'error');
+            }
+        } catch (error) {
+            showAlert('registerAlert', 'Registration failed. Please check your connection.', 'error');
+        }
+    });
+
+    // User Login
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const loginData = {
+            email: document.getElementById('loginEmail').value.trim(),
+            password: document.getElementById('loginPassword').value
+        };
+
+        try {
+            const result = await apiCall('/user/login', 'POST', loginData);
+
+            if (result.success) {
+                currentUser = result.user;
+                userRole = 'USER';
+                isLoggedIn = true;
+                updateAuthButtons();
+
+                showAlert('loginAlert', result.message, 'success');
+                this.reset();
+
+                setTimeout(() => {
+                    closeModal('loginModal');
+                    showUserDashboard();
+                }, 1500);
+            } else {
+                showAlert('loginAlert', result.message || 'Login failed', 'error');
+            }
+        } catch (error) {
+            showAlert('loginAlert', 'Login failed. Please check your connection.', 'error');
+        }
+    });
+
+    // Admin Login
+    document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const loginData = {
+            email: document.getElementById('adminEmail').value.trim(),
+            password: document.getElementById('adminPassword').value
+        };
+
+        try {
+            const result = await apiCall('/admin/login', 'POST', loginData);
+
+            if (result.success) {
+                currentAdmin = result.admin;
+                userRole = 'ADMIN';
+                isLoggedIn = true;
+                updateAuthButtons();
+
+                showAlert('adminLoginAlert', result.message, 'success');
+                this.reset();
+
+                setTimeout(() => {
+                    closeModal('adminLoginModal');
+                    showAdminDashboard();
+                }, 1500);
+            } else {
+                showAlert('adminLoginAlert', result.message || 'Invalid admin credentials', 'error');
+            }
+        } catch (error) {
+            showAlert('adminLoginAlert', 'Login failed. Please check your connection.', 'error');
+        }
+    });
+
+    // Load User Dashboard
+    function loadUserDashboard() {
+        if (currentUser) {
+            // Update sidebar user info
+            document.getElementById('sidebarUserName').textContent = currentUser.name;
+            updateUserAvatar();
+
+            console.log('User dashboard loaded for:', currentUser.name);
+        }
+    }
+
+    // Load User Profile Section
+    function loadUserProfile() {
+        if (currentUser) {
+            document.getElementById('profileUserName').textContent = currentUser.name;
+            document.getElementById('profileDisplayName').textContent = currentUser.name;
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            document.getElementById('profileNic').textContent = currentUser.nic;
+            document.getElementById('profilePhone').textContent = currentUser.telephone;
+            document.getElementById('profileAge').textContent = currentUser.age;
+            document.getElementById('profileAddress').textContent = currentUser.address;
+
+            updateUserAvatar();
+        }
+    }
+
+    // Load Profile Data for Edit
+    function loadProfileDataForEdit() {
+        if (currentUser) {
+            document.getElementById('editName').value = currentUser.name;
+            document.getElementById('editAge').value = currentUser.age;
+            document.getElementById('editNic').value = currentUser.nic;
+            document.getElementById('editAddress').value = currentUser.address;
+            document.getElementById('editPhone').value = currentUser.telephone;
+            document.getElementById('editEmail').value = currentUser.email;
+        }
+    }
+
+    // Edit Profile
+    document.getElementById('editProfileForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const updatedData = {
+            id: currentUser.id,
+            name: document.getElementById('editName').value.trim(),
+            age: parseInt(document.getElementById('editAge').value),
+            nic: document.getElementById('editNic').value.trim(),
+            address: document.getElementById('editAddress').value.trim(),
+            telephone: document.getElementById('editPhone').value.trim(),
+            email: document.getElementById('editEmail').value.trim(),
+            password: currentUser.password
+        };
+
+        // Age validation
+        if (updatedData.age < 16 || updatedData.age > 100) {
+            showAlert('editProfileAlert', 'Age must be between 16 and 100 years.', 'error');
+            return;
+        }
+
+        // Basic NIC validation (Sri Lankan format)
+        const nicPattern = /^(\d{9}[vVxX]|\d{12})$/;
+        if (!nicPattern.test(updatedData.nic)) {
+            showAlert('editProfileAlert', 'Please enter a valid NIC number (e.g., 123456789V or 200012345678).', 'error');
+            return;
+        }
+
+        try {
+            const result = await apiCall('/user/profile', 'PUT', updatedData);
+
+            if (result.success) {
+                currentUser = result.user;
+                loadUserDashboard();
+                loadUserProfile();
+
+                showAlert('editProfileAlert', 'Profile updated successfully!', 'success');
+
+                setTimeout(() => {
+                    closeModal('editProfileModal');
+                }, 2000);
+            } else {
+                showAlert('editProfileAlert', result.message || 'Failed to update profile', 'error');
+            }
+        } catch (error) {
+            showAlert('editProfileAlert', 'Update failed. Please try again.', 'error');
+        }
+    });
+
+    // Change Password
+    document.getElementById('changePasswordForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (newPassword !== confirmPassword) {
+            showAlert('changePasswordAlert', 'New passwords do not match.', 'error');
+            return;
+        }
+
+        const passwordData = {
+            email: currentUser.email,
+            oldPassword: currentPassword,
+            newPassword: newPassword
+        };
+
+        try {
+            const result = await apiCall('/user/change-password', 'PUT', passwordData);
+
+            if (result.success) {
+                showAlert('changePasswordAlert', 'Password changed successfully!', 'success');
+                this.reset();
+
+                setTimeout(() => {
+                    closeModal('changePasswordModal');
+                }, 2000);
+            } else {
+                showAlert('changePasswordAlert', result.message || 'Failed to change password', 'error');
+            }
+        } catch (error) {
+            showAlert('changePasswordAlert', 'Password change failed. Please try again.', 'error');
+        }
+    });
+
+    // Update Overview Stats
+    function updateOverviewStats() {
+        loadAdminDashboard();
+    }
+
+    // Load Admin Dashboard (Users Section)
+    async function loadAdminDashboard() {
+        try {
+            const dashboardResult = await apiCall('/admin/dashboard', 'GET');
+
+            if (dashboardResult.success) {
+                displayUsersTable(dashboardResult.users);
+
+                // Update total users count in overview
+                const totalUsersElement = document.getElementById('totalUsersCount');
+                if (totalUsersElement) {
+                    totalUsersElement.textContent = dashboardResult.totalUsers || dashboardResult.users.length;
+                }
+
+                console.log(`Total users: ${dashboardResult.totalUsers || dashboardResult.users.length}`);
+            } else {
+                showAlert('adminDashboardAlert', 'Failed to load dashboard data', 'error');
+                displayUsersTable([]);
+            }
+        } catch (error) {
+            console.error('Dashboard load error:', error);
+            showAlert('adminDashboardAlert', 'Failed to load dashboard data. Please check your connection.', 'error');
+            displayUsersTable([]);
+        }
+    }
+
+    // Display Users Table
+    function displayUsersTable(usersList) {
+        let tableHtml = '';
+
+        if (usersList && usersList.length > 0) {
+            tableHtml = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>NIC</th>
+                            <th>Phone</th>
+                            <th>Age</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${usersList.map(user => `
+                            <tr>
+                                <td>${user.id}</td>
+                                <td>${user.name}</td>
+                                <td>${user.email}</td>
+                                <td>${user.nic}</td>
+                                <td>${user.telephone}</td>
+                                <td>${user.age}</td>
+                                <td>
+                                    <button class="btn btn-admin" onclick="deleteUser(${user.id})" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                                        🗑️ Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        } else {
+            tableHtml = `
+                <div style="text-align: center; padding: 2rem; color: #666;">
+                    <p>No users found in the database.</p>
+                    <p>Users who register will appear here.</p>
+                </div>
+            `;
+        }
+
+        document.getElementById('usersTable').innerHTML = tableHtml;
+    }
+
+    // Delete User
+    async function deleteUser(userId) {
+        if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+            try {
+                const result = await apiCall(`/admin/users/${userId}`, 'DELETE');
+
+                if (result.success) {
+                    showAlert('adminDashboardAlert', result.message, 'success');
+                    loadAdminDashboard();
+                } else {
+                    showAlert('adminDashboardAlert', result.message || 'Failed to delete user', 'error');
+                }
+            } catch (error) {
+                console.error('Delete user error:', error);
+                showAlert('adminDashboardAlert', 'Failed to delete user. Please check your connection.', 'error');
+            }
+        }
+    }
+
+    // Refresh Users
+    async function refreshUsers() {
+        try {
+            showAlert('adminDashboardAlert', 'Refreshing data...', 'success');
+            await loadAdminDashboard();
+        } catch (error) {
+            showAlert('adminDashboardAlert', 'Failed to refresh data', 'error');
+        }
+    }
+
+    // Contact Form
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('contactName').value,
+            phone: document.getElementById('contactPhone').value,
+            message: document.getElementById('contactMessage').value
+        };
+
+        console.log('Contact form submitted:', formData);
+        alert('Thank you for your message! We will get back to you soon.');
+        this.reset();
+    });
+
+    // Logout
+    function logout() {
+        currentUser = null;
+        currentAdmin = null;
+        isLoggedIn = false;
+        userRole = null;
+        updateAuthButtons();
+        showPage('home');
+
+        document.querySelectorAll('form').forEach(form => form.reset());
+        clearAlerts();
+
+        console.log('User logged out successfully');
+    }
+
+    // Initialize application
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('MotorCare LK Application initialized');
+        updateAuthButtons();
+        showPage('home');
+    });
+
+    // Close modals when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.classList.remove('show');
+        }
+    });
+
+    // Debug utilities
+    window.motorCareDebug = {
+        currentState: () => ({ currentUser, currentAdmin, isLoggedIn, userRole }),
+        testLogin: () => console.log('Current login state:', { isLoggedIn, userRole, currentUser })
+    };
+</script>
+</body>
+</html>
