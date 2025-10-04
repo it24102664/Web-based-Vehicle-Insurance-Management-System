@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Payment Management - MOTORCARE LK</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .main-content {
+            padding: 40px;
+            min-height: calc(100vh - 70px);
+        }
+
+        .content-header {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .content-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .filters-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .filter-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #e8eaf6;
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .payments-table {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .table-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .search-box {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 14px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f5f5f5;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+        }
+
+        tbody tr {
+            transition: all 0.3s;
+        }
+
+        tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .payment-method {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.3s;
+            margin-right: 5px;
+        }
+
+        .view-btn {
+            background: #667eea;
+            color: white;
+        }
+
+        .view-btn:hover {
+            background: #5568d3;
+        }
+
+        .approve-btn {
+            background: #4caf50;
+            color: white;
+        }
+
+        .approve-btn:hover {
+            background: #45a049;
+        }
+
+        .reject-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        .reject-btn:hover {
+            background: #da190b;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .detail-section {
+            margin-bottom: 25px;
+        }
+
+        .detail-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .detail-label {
+            font-size: 13px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .detail-value {
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            padding: 20px 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+        <div class="logo-icon">🚗</div>
+        MOTORCARE LK - Admin Panel
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="content-header">
+        <div class="content-title">
+            <span>💳</span>
+            Payment Management Dashboard
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="pendingCount">0</div>
+                <div class="stat-label">Pending Payments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="approvedCount">0</div>
+                <div class="stat-label">Approved Payments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="rejectedCount">0</div>
+                <div class="stat-label">Rejected Payments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalAmount">0.00</div>
+                <div class="stat-label">Total Amount (LKR)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="filters-section">
+        <div class="filter-title">Payment Status</div>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all" onclick="filterByStatus('all')">All</button>
+            <button class="filter-btn" data-filter="PENDING" onclick="filterByStatus('PENDING')">Pending</button>
+            <button class="filter-btn" data-filter="APPROVED" onclick="filterByStatus('APPROVED')">Approved</button>
+            <button class="filter-btn" data-filter="REJECTED" onclick="filterByStatus('REJECTED')">Rejected</button>
+        </div>
+    </div>
+
+    <div class="filters-section">
+        <div class="filter-title">Payment Method</div>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-method="all" onclick="filterByMethod('all')">All Methods</button>
+            <button class="filter-btn" data-method="BANK_SLIP" onclick="filterByMethod('BANK_SLIP')">Bank Slip</button>
+            <button class="filter-btn" data-method="ONLINE_PAYMENT" onclick="filterByMethod('ONLINE_PAYMENT')">Online Payment</button>
+        </div>
+    </div>
+
+    <div class="payments-table">
+        <div class="table-header">
+            <div class="table-title">Payment Submissions</div>
+            <input type="text" class="search-box" placeholder="🔍 Search by policy or user..." onkeyup="searchPayments(this.value)">
+        </div>
+
+        <div id="loadingMessage" class="loading">Loading payments...</div>
+        <div id="errorMessage" class="error" style="display: none;"></div>
+
+        <table id="paymentsTable" style="display: none;">
+            <thead>
+            <tr>
+                <th>Payment ID</th>
+                <th>User Name</th>
+                <th>Policy Number</th>
+                <th>Month</th>
+                <th>Amount (LKR)</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+                <th>Submitted Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="paymentsTableBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Payment Details Modal -->
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title">💰 Payment Details</div>
+            <button class="close-btn" onclick="closeModal('paymentModal')">&times;</button>
+        </div>
+        <div class="modal-body" id="paymentModalBody">
+        </div>
+    </div>
+</div>
+
+<script>
+    // API Configuration
+    const API_BASE_URL = 'http://localhost:8080/api/admin/payments';
+
+    let currentPayments = [];
+
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPayments();
+        updateStatistics();
+    });
+
+    // Load all payments from backend
+    async function loadPayments() {
+        try {
+            showLoading(true);
+            const response = await fetch(`${API_BASE_URL}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const payments = await response.json();
+            currentPayments = payments;
+            displayPayments(payments);
+            showLoading(false);
+
+        } catch (error) {
+            console.error('Error loading payments:', error);
+            showError('Failed to load payments. Please check your connection.');
+            showLoading(false);
+        }
+    }
+
+    // Load payment statistics
+    async function updateStatistics() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/statistics`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const stats = await response.json();
+
+            document.getElementById('pendingCount').textContent = stats.pendingCount || 0;
+            document.getElementById('approvedCount').textContent = stats.approvedCount || 0;
+            document.getElementById('rejectedCount').textContent = stats.rejectedCount || 0;
+            document.getElementById('totalAmount').textContent = (stats.totalAmount || 0).toFixed(2);
+
+        } catch (error) {
+            console.error('Error loading statistics:', error);
+        }
+    }
+
+    // Display payments in the table
+    function displayPayments(payments) {
+        const tbody = document.getElementById('paymentsTableBody');
+        tbody.innerHTML = '';
+
+        if (payments.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 40px; color: #999;">No payments found</td></tr>';
+            return;
+        }
+
+        payments.forEach(payment => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                    <td>${payment.paymentId}</td>
+                    <td>${payment.userName || 'N/A'}</td>
+                    <td>${payment.policyNumber}</td>
+                    <td>${payment.paymentMonth}</td>
+                    <td>LKR ${(payment.amount || 0).toFixed(2)}</td>
+                    <td><span class="payment-method">${(payment.paymentMethod || 'N/A').replace('_', ' ')}</span></td>
+                    <td><span class="status-badge status-${(payment.status || 'pending').toLowerCase()}">${payment.status || 'PENDING'}</span></td>
+                    <td>${formatDate(payment.submittedDate)}</td>
+                    <td>
+                        <button class="action-btn view-btn" onclick="viewPaymentDetails('${payment.paymentId}')">View</button>
+                        ${payment.status === 'PENDING' ? `
+                            <button class="action-btn approve-btn" onclick="approvePayment('${payment.paymentId}')">Approve</button>
+                            <button class="action-btn reject-btn" onclick="rejectPayment('${payment.paymentId}')">Reject</button>
+                        ` : ''}
+                    </td>
+                `;
+            tbody.appendChild(row);
+        });
+    }
+
+    // View payment details
+    async function viewPaymentDetails(paymentId) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/payment/${paymentId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const payment = await response.json();
+            showPaymentDetailsModal(payment);
+
+        } catch (error) {
+            console.error('Error loading payment details:', error);
+            showError('Failed to load payment details.');
+        }
+    }
+
+    // Show payment details modal
+    function showPaymentDetailsModal(payment) {
+        const modal = document.getElementById('paymentModal');
+        const modalBody = document.getElementById('paymentModalBody');
+
+        modalBody.innerHTML = `
+                <div class="detail-section">
+                    <div class="detail-section-title">Payment Information</div>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">Payment ID</div>
+                            <div class="detail-value">${payment.paymentId}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Amount</div>
+                            <div class="detail-value">LKR ${(payment.amount || 0).toFixed(2)}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Payment Month</div>
+                            <div class="detail-value">${payment.paymentMonth}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Status</div>
+                            <div class="detail-value"><span class="status-badge status-${(payment.status || 'pending').toLowerCase()}">${payment.status || 'PENDING'}</span></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Submitted Date</div>
+                            <div class="detail-value">${formatDateTime(payment.submittedDate)}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Payment Method</div>
+                            <div class="detail-value">${(payment.paymentMethod || 'N/A').replace('_', ' ')}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-section-title">User & Policy Details</div>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">User Name</div>
+                            <div class="detail-value">${payment.userName || 'N/A'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Email</div>
+                            <div class="detail-value">${payment.userEmail || 'N/A'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Policy Number</div>
+                            <div class="detail-value">${payment.policyNumber}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Vehicle</div>
+                            <div class="detail-value">${payment.vehicle || 'N/A'}</div>
+                        </div>
+                    </div>
+                </div>
+
+                ${payment.adminComments ? `
+                    <div class="detail-section">
+                        <div class="detail-section-title">Admin Comments</div>
+                        <div class="detail-value">${payment.adminComments}</div>
+                    </div>
+                ` : ''}
+
+                <div class="modal-actions">
+                    ${payment.status === 'PENDING' ? `
+                        <button class="reject-btn" onclick="rejectPayment('${payment.paymentId}')">❌ Reject Payment</button>
+                        <button class="approve-btn" onclick="approvePayment('${payment.paymentId}')">✅ Approve Payment</button>
+                    ` : `
+                        <div style="padding: 10px; color: #666;">
+                            Payment ${(payment.status || 'processed').toLowerCase()} on ${payment.approvalDate ? formatDate(payment.approvalDate) : 'N/A'}
+                        </div>
+                    `}
+                </div>
+            `;
+
+        modal.classList.add('active');
+    }
+
+    // Approve payment
+    async function approvePayment(paymentId) {
+        if (!confirm(`Are you sure you want to approve payment ${paymentId}?`)) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/${paymentId}/approve?adminComments=Payment approved by admin`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            showSuccess(`Payment ${paymentId} has been approved.`);
+            closeModal('paymentModal');
+            loadPayments();
+            updateStatistics();
+
+        } catch (error) {
+            console.error('Error approving payment:', error);
+            showError('Failed to approve payment. Please try again.');
+        }
+    }
+
+    // Reject payment
+    async function rejectPayment(paymentId) {
+        const reason = prompt(`Please provide a reason for rejecting payment ${paymentId}:`);
+        if (!reason || reason.trim() === '') {
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/${paymentId}/reject?adminComments=${encodeURIComponent(reason)}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            showSuccess(`Payment ${paymentId} has been rejected.`);
+            closeModal('paymentModal');
+            loadPayments();
+            updateStatistics();
+
+        } catch (error) {
+            console.error('Error rejecting payment:', error);
+            showError('Failed to reject payment. Please try again.');
+        }
+    }
+
+    // Filter by status
+    async function filterByStatus(status) {
+        updateActiveButton('[data-filter]', status);
+
+        try {
+            let url = API_BASE_URL;
+            if (status !== 'all') {
+                url += `/status/${status}`;
+            }
+
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const payments = await response.json();
+            currentPayments = payments;
+            displayPayments(payments);
+
+        } catch (error) {
+            console.error('Error filtering payments:', error);
+            showError('Failed to filter payments.');
+        }
+    }
+
+    // Filter by method
+    async function filterByMethod(method) {
+        updateActiveButton('[data-method]', method);
+
+        try {
+            let url = API_BASE_URL;
+            if (method !== 'all') {
+                url += `/method/${method}`;
+            }
+
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const payments = await response.json();
+            currentPayments = payments;
+            displayPayments(payments);
+
+        } catch (error) {
+            console.error('Error filtering by method:', error);
+            showError('Failed to filter payments.');
+        }
+    }
+
+    // Search payments
+    async function searchPayments(query) {
+        if (query.length < 2 && query.length > 0) {
+            return;
+        }
+
+        try {
+            let url = API_BASE_URL;
+            if (query.length >= 2) {
+                url += `/search?query=${encodeURIComponent(query)}`;
+            }
+
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const payments = await response.json();
+            currentPayments = payments;
+            displayPayments(payments);
+
+        } catch (error) {
+            console.error('Error searching payments:', error);
+            showError('Failed to search payments.');
+        }
+    }
+
+    // Utility functions
+    function updateActiveButton(selector, value) {
+        document.querySelectorAll(selector).forEach(btn => btn.classList.remove('active'));
+        const button = document.querySelector(`${selector}="${value}"]`);
+        if (button) {
+            button.classList.add('active');
+        }
+    }
+
+    function formatDate(dateString) {
+        if (!dateString) return 'N/A';
+        return new Date(dateString).toLocaleDateString();
+    }
+
+    function formatDateTime(dateString) {
+        if (!dateString) return 'N/A';
+        return new Date(dateString).toLocaleString();
+    }
+
+    function showLoading(show) {
+        const loadingMessage = document.getElementById('loadingMessage');
+        const paymentsTable = document.getElementById('paymentsTable');
+
+        if (show) {
+            loadingMessage.style.display = 'block';
+            paymentsTable.style.display = 'none';
+        } else {
+            loadingMessage.style.display = 'none';
+            paymentsTable.style.display = 'table';
+        }
+    }
+
+    function showError(message) {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 5000);
+    }
+
+    function showSuccess(message) {
+        const existingSuccess = document.querySelector('.success');
+        if (existingSuccess) existingSuccess.remove();
+
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success';
+        successDiv.textContent = message;
+        document.querySelector('.main-content').prepend(successDiv);
+
+        setTimeout(() => successDiv.remove(), 5000);
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+    }
+
+    // Close modals on outside click
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal')) {
+            closeModal(event.target.id);
+        }
+    });
+
+    // Auto-refresh data every 30 seconds
+    setInterval(() => {
+        loadPayments();
+        updateStatistics();
+    }, 30000);
+</script>
+</body>
+</html>
